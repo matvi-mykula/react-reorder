@@ -43,8 +43,10 @@
         this.handleTouchEvents(event);
 
         var target = event.target;
+        console.log("item down");
         while (target && target !== event.currentTarget) {
           if (target.tagName === "SELECT" || target.tagName === "BUTTON") {
+            console.log("found select or button");
             return; // Do not initiate drag-and-drop
           }
           target = target.parentNode;
