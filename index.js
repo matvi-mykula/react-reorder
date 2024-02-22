@@ -41,9 +41,15 @@
       },
       itemDown: function (item, index, event) {
         this.handleTouchEvents(event);
-        if (event.target.tagName === "BUTTON" || event.target.tagName === "SELECT") {
-          return; // Do not initiate drag-and-drop
+
+        var target = event.target;
+        while (target && target !== event.currentTarget) {
+          if (target.tagName === "SELECT" || target.tagName === "BUTTON") {
+            return; // Do not initiate drag-and-drop
+          }
+          target = target.parentNode;
         }
+
         var self = this;
         var target = event.currentTarget;
         var rect = target.getBoundingClientRect();
